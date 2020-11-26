@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1606424600 source:c:\users\michael\documents\battleship\main.cpp
+	<iostream>
+	<cmath>
+	<math.h>
+	<windows.h>
+	<stdlib.h>
+	<chrono>
+	<random>
+
