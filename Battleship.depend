@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1606424600 source:c:\users\michael\documents\battleship\main.cpp
+1606493335 source:c:\users\michael\documents\battleship\main.cpp
 	<iostream>
+	<iomanip>
 	<cmath>
 	<math.h>
 	<windows.h>

@@ -1,4 +1,5 @@
 #include<iostream>
+#include<iomanip>
 #include<cmath>
 #include<math.h>
 #include<windows.h>
@@ -115,7 +116,116 @@ void Adivinar(int T[][10], int m, int n){
 }
 */
 
+char** initializeGameboard(int numberRows, int numberColumns, char emptySpace){
+    char** gameBoard = new char*[numberRows];
+    for(int row = 0; row < numberRows; row++){
+        gameBoard[row] = new char[numberColumns];
+    }
+
+    for(int row = 0; row < numberRows; row++){
+        for(int column = 0; column < numberColumns; column++){
+            gameBoard[row][column] = emptySpace;
+        }
+    }
+    return gameBoard;
+}
+
+void showGameboard(char** gameBoard, int numberRows, int numberColumns, int numberLeftSpaces, int numberAboveSpaces, bool allowGameboardLines){
+    for(int space = 0; space < numberAboveSpaces; space++){
+        cout << endl;
+    }
+    cout << "  ";
+    for(int space = 0; space < numberLeftSpaces; space++){
+        cout << " ";
+    }
+    for(int column = 0; column < numberColumns; column++){
+        if(allowGameboardLines == true){
+            cout << " " << setw(2) << column + 1 << " ";
+        }else{
+            cout << setw(2) << column + 1 << " ";
+        }
+    }
+    cout << endl;
+
+    if(allowGameboardLines == true){
+        cout << "  ";
+        for(int space = 0; space < numberLeftSpaces; space++){
+            cout << " ";
+        }
+        for(int column = 0; column < numberColumns; column++){
+            if(column == 0){
+                cout << char(201) << char(205) << char(205) << char(205);
+            }else if(column > 0 && column <= numberColumns - 1){
+                cout << char(203) << char(205) << char(205) << char(205);
+            }
+
+            if(column == numberColumns - 1){
+                cout << char(187) << endl;
+            }
+        }
+    }
+
+    for(int row = 0; row < numberRows; row++){
+        for(int space = 0; space < numberLeftSpaces; space++){
+            cout << " ";
+        }
+        cout << char(65 + row) << " ";
+        if(allowGameboardLines == true){
+            cout << char(186);
+        }
+        for(int column = 0; column < numberColumns; column++){
+            if(allowGameboardLines == true){
+                cout << " " << gameBoard[row][column] << " " << char(186);
+            }else{
+                cout << " " << gameBoard[row][column] << " ";
+            }
+        }
+        cout << endl;
+
+        if(row >= 0 && row < numberRows - 1 && allowGameboardLines == true){
+            cout << "  ";
+            for(int space = 0; space < numberLeftSpaces; space++){
+                cout << " ";
+            }
+            for(int column = 0; column < numberColumns; column++){
+                if(column == 0){
+                    cout << char(204) << char(205) << char(205) << char(205);
+                }else if(column > 0 && column <= numberColumns - 1){
+
+                    cout << char(206) << char(205) << char(205) << char(205);
+                }
+
+                if(column == numberColumns - 1){
+                    cout << char(185) << endl;
+                }
+            }
+        }
+    }
+
+    if(allowGameboardLines == true){
+        cout << "  ";
+        for(int space = 0; space < numberLeftSpaces; space++){
+            cout << " ";
+        }
+        for(int column = 0; column < numberColumns; column++){
+            if(column == 0){
+                cout << char(200) << char(205) << char(205) << char(205);
+            }else if(column > 0 && column <= numberColumns - 1){
+                cout << char(202) << char(205) << char(205) << char(205);
+            }
+
+            if(column == numberColumns - 1){
+                cout << char(188) << endl;
+            }
+        }
+    }
+}
+
 int main(){
-    cout << "Hello world!" << endl;
+    int numberRows = 11, numberColumns = 12, numberLeftSpaces = 3, numberAboveSpaces = 1;
+    char emptySpace = ' ';
+    bool allowGameboardLines = true;
+    char** gameBoard = initializeGameboard(numberRows, numberColumns, emptySpace);
+    showGameboard(gameBoard, numberRows, numberColumns, numberLeftSpaces, numberAboveSpaces, allowGameboardLines);
     return 0;
 }
